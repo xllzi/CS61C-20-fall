@@ -5,10 +5,10 @@
 ** DESCRIPTION: CS61C Fall 2020 Project 1
 **
 ** AUTHOR:      Justin Yokota - Starter Code
-**				YOUR NAME HERE
+**				@xllzi
 **
 **
-** DATE:        2020-08-23
+** DATE:        2025-12-19
 **
 **************************************************************************/
 
