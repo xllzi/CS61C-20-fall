@@ -43,6 +43,7 @@ Color* evaluateOneCell(Image *image, int row, int col, uint32_t rule)
         }
     }
 
+    // 通过`n_lived`和`old_state`来确定新值在`rule`的哪一位上（从0开始）
     uint32_t which_bit;
     which_bit = n_lived_R + old_state_R * 9;
     pixel->R = (rule > which_bit & 1)*255;
@@ -57,7 +58,13 @@ Color* evaluateOneCell(Image *image, int row, int col, uint32_t rule)
 //You should be able to copy most of this from steganography.c
 Image *life(Image *image, uint32_t rule)
 {
-	//YOUR CODE HERE
+    for (int i = 0; i < image->rows; i++) {
+        for (int j = 0; j < image->cols; j++) {
+            evaluateOneCell(image, i, j, rule);
+        }
+    }
+
+    return image;
 }
 
 /*
@@ -77,5 +84,12 @@ You may find it useful to copy the code from steganography.c, to start.
 */
 int main(int argc, char **argv)
 {
-	//YOUR CODE HERE
+    Image *image = readData(argv[1]);
+    if (image == NULL) {
+        return -1;
+    }
+    uint32_t rule = atoi(argv[2]);
+    life(image, rule); 
+    writeData(image);
+    freeImage(image);
 }
